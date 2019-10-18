@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style>
+        </style>
+        <script>
+            function koffieKrijgen(){
+                console.log("We zijn er");
+                var request=new XMLHttpRequest();
+                request.onreadystatechange = function(){
+                    console.log("readystate is veranderd");
+                    if(request.readyState==4){
+                    var hetObject = JSON.parse(this.responseText);
+                    console.log(hetObject);
+                    document.getElementById("resultaat").innerHTML = hetObject.name;
+                    }                    
+                }
+                request.open("GET","http://localhost:8082/koffie",true);
+                request.send();
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="Doe maar klikken" onclick="koffieKrijgen()">
+        <div id="resultaat"></div>
+    </body>
+</html>
